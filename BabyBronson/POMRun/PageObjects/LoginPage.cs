@@ -30,29 +30,29 @@ namespace POMTest.PageObjects
             return new GoogleHomePage(driver, action,wait);
 
         }
-        public IWebElement GetUsernameField() {
+        public IWebElement getUsernameField() {
             return driver.FindElement(By.Id("identifierId"));
         }
-        public IWebElement GetUsernameNextButton() {
+        public IWebElement getUsernameNextButton() {
             return driver.FindElement(By.Id("identifierNext")); ;
         }
-        public IWebElement GetPasswordField() {
+        public IWebElement getPasswordField() {
             return driver.FindElement(By.XPath("//*[@id='password']//input"));
         }
-        public IWebElement GetPasswordNextButton() {
+        public IWebElement getPasswordNextButton() {
             return driver.FindElement(By.Id("passwordNext"));
         }
         public void EnterUsername(String username) {
-            GetUsernameField().SendKeys(username);
-            GetUsernameNextButton().Click();
+            getUsernameField().SendKeys(username);
+            getUsernameNextButton().Click();
         }
         public void EnterPassword(String password) {
             
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='password']//input")));
             
             //Thread.Sleep(500);
-            GetPasswordField().SendKeys(password);
-            GetPasswordNextButton().Click();
+            getPasswordField().SendKeys(password);
+            getPasswordNextButton().Click();
 
         }
     }

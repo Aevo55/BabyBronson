@@ -27,11 +27,11 @@ namespace POMRun
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
 
             GoogleHomePage homepage = new GoogleHomePage(driver, action,wait);
-            homepage.init();
+            homepage.Init();
             Email email = new Email();
-            LoginPage loginpage = homepage.GotoLogin();
+            LoginPage loginpage = homepage.gotoLogin();
             GoogleHomePage LoggedInHomepage = loginpage.Login("DaveTestSe", "TestPass");
-            GmailHomePage gmailhome = LoggedInHomepage.GotoGmail();
+            GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             gmailhome.SelectEmail(0);
             gmailhome.SelectEmail(1);
             //gmailhome.DeleteSelected();
