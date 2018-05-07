@@ -27,11 +27,16 @@ namespace POMTest.PageObjects
             return wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@name='subjectbox']")));
         }
         public IWebElement GetAddressField() {
-            //return driver.FindElement(By.XPath("//*[@role='combobox']"));
             return wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@role='combobox']")));
         }
         public IWebElement GetContentField() {
             return wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@role='textbox']")));
+        }
+        public IWebElement GetSendButton() {
+            return wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[contains(@data-tooltip, 'Send')]")));
+        }
+        public void SendEmail() {
+            wait.Until(ExpectedConditions.ElementToBeClickable(GetSendButton())).Click();
         }
         public void InputSubject(String subject) {
             wait.Until(ExpectedConditions.ElementToBeClickable(GetSubjectField())).Click();
@@ -40,12 +45,14 @@ namespace POMTest.PageObjects
         public void InputAddress(String address) {
             wait.Until(ExpectedConditions.ElementToBeClickable(GetAddressField())).Click();
             GetAddressField().SendKeys(address);
+            GetAddressField().SendKeys(Keys.Enter);
         }
         public void InputContent(String content)
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(GetContentField())).Click();
             GetContentField().SendKeys(content);
         }
+
 
 
     }

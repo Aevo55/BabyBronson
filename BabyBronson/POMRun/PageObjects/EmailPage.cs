@@ -24,11 +24,5 @@ namespace POMTest.PageObjects
             this.action = _action;
         }
 
-        
-        public void logMessageText() {
-            
-            
-        }
-
     }
 }
