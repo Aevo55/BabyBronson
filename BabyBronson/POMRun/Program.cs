@@ -32,8 +32,9 @@ namespace POMRun
             LoginPage loginpage = homepage.gotoLogin();
             GoogleHomePage LoggedInHomepage = loginpage.Login("DaveTestSe", "TestPass");
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
-            gmailhome.SelectEmail(0);
-            gmailhome.SelectEmail(1);
+            ComposeWindow compose = gmailhome.ClickCompose();
+            compose.InputAddress("TESTEMAIL");
+            compose.InputSubject("Its a test");
             //gmailhome.DeleteSelected();
             //email.respond(0,gmailhome);
             //driver.Close();

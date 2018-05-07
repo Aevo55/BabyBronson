@@ -24,15 +24,10 @@ namespace POMTest.PageObjects
             this.action = _action;
         }
 
-        public IWebElement getMessageArea() {
-
-            return driver.FindElement(By.CssSelector("[class= 'gmail_default']"));
-
-        }
+        
         public void logMessageText() {
-            Console.WriteLine(getMessageArea().GetAttribute("innerHTML"));
-            ////*[@id="m_7976637380232723432divtagdefaultwrapper"]/p
-            //*[@id=":9x"]/div[1]/div
+            
+            
         }
 
     }

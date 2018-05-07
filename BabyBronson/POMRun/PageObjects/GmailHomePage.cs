@@ -17,13 +17,14 @@ namespace POMTest.PageObjects
     {
         IWebDriver driver;
         Actions action;
-        
+        WebDriverWait wait;
    
    
-   public GmailHomePage(IWebDriver _driver, Actions _action)
+   public GmailHomePage(IWebDriver _driver, Actions _action, WebDriverWait _wait)
         {
             this.driver = _driver;
             this.action = _action;
+            this.wait = _wait;
         }
 
         public IWebElement getSenderMeta(int count) {
@@ -56,7 +57,13 @@ namespace POMTest.PageObjects
             IWebElement SelectedEmail = getEmails()[count];
             SelectedEmail.FindElement(By.CssSelector("td[class='oZ-x3 xY']")).Click();
         }
-
+        public IWebElement GetComposeButton() {
+            return driver.FindElement(By.CssSelector("[class='z0']")).FindElement(By.XPath("child::*"));
+        }
+        public ComposeWindow ClickCompose() {
+            GetComposeButton().Click();
+            return new ComposeWindow(driver, action, wait);
+        }
         public ReadOnlyCollection<IWebElement> getEmails() {
             return driver.FindElements(By.XPath("//tr[contains(@class,'zA')]"));
         }

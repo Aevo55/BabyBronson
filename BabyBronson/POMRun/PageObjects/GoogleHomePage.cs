@@ -33,11 +33,9 @@ namespace POMTest.PageObjects
             IWebElement gmailLink = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='gbw']/div/div/div[1]/div[2]/a")));
             
             gmailLink.Click();
-            return new GmailHomePage(driver, action);
+            return new GmailHomePage(driver, action,wait);
         }
         
     }
-    
-
 
 }
