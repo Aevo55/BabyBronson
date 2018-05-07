@@ -12,38 +12,47 @@ namespace POMTest.PageObjects
 {
     public class LoginPage
     {
+        
         IWebDriver driver;
         Actions action;
+        WebDriverWait wait;
 
-
-        public LoginPage(IWebDriver _driver, Actions _action)
+        public LoginPage(IWebDriver _driver, Actions _action, WebDriverWait _wait)
         {
             this.driver = _driver;
             this.action = _action;
-
+            this.wait = _wait;
 
         }
         public GoogleHomePage Login(String username, String password) {
-
             EnterUsername(username);
             EnterPassword(password);
-            return new GoogleHomePage(driver, action);
+            return new GoogleHomePage(driver, action,wait);
 
         }
-        
-
+        public IWebElement GetUsernameField() {
+            return driver.FindElement(By.Id("identifierId"));
+        }
+        public IWebElement GetUsernameNextButton() {
+            return driver.FindElement(By.Id("identifierNext")); ;
+        }
+        public IWebElement GetPasswordField() {
+            return driver.FindElement(By.XPath("//*[@id='password']//input"));
+        }
+        public IWebElement GetPasswordNextButton() {
+            return driver.FindElement(By.Id("passwordNext"));
+        }
         public void EnterUsername(String username) {
-            IWebElement UsernameField = driver.FindElement(By.Id("identifierId"));
-            UsernameField.SendKeys(username);
-            IWebElement NextButton = driver.FindElement(By.Id("identifierNext"));
-            NextButton.Click();
+            GetUsernameField().SendKeys(username);
+            GetUsernameNextButton().Click();
         }
         public void EnterPassword(String password) {
-            Thread.Sleep(500);
-            IWebElement PasswordField = driver.FindElement(By.XPath("//*[@id='password']")).FindElement(By.XPath(".//input"));
-            PasswordField.SendKeys(password);
-            IWebElement NextButton = driver.FindElement(By.Id("passwordNext"));
-            NextButton.Click();
+            
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='password']//input")));
+            
+            //Thread.Sleep(500);
+            GetPasswordField().SendKeys(password);
+            GetPasswordNextButton().Click();
 
         }
     }

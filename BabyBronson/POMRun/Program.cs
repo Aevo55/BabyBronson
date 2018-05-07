@@ -24,9 +24,9 @@ namespace POMRun
             options.AddArgument("--start-maximized");
             IWebDriver driver = new ChromeDriver(options);
             Actions action = new Actions(driver);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
 
-
-            GoogleHomePage homepage = new GoogleHomePage(driver, action);
+            GoogleHomePage homepage = new GoogleHomePage(driver, action,wait);
             homepage.init();
             Email email = new Email();
             LoginPage loginpage = homepage.GotoLogin();
@@ -34,7 +34,7 @@ namespace POMRun
             GmailHomePage gmailhome = LoggedInHomepage.GotoGmail();
             gmailhome.SelectEmail(0);
             gmailhome.SelectEmail(1);
-            gmailhome.DeleteSelected();
+            //gmailhome.DeleteSelected();
             //email.respond(0,gmailhome);
             //driver.Close();
 

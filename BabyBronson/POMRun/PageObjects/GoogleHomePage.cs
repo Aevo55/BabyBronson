@@ -13,17 +13,17 @@ namespace POMTest.PageObjects
     {
         IWebDriver driver;
         Actions action;
-
-        public GoogleHomePage(IWebDriver _driver, Actions _action) {
+        WebDriverWait wait;
+        public GoogleHomePage(IWebDriver _driver, Actions _action, WebDriverWait _wait) {
             this.driver = _driver;
             this.action = _action;
-
+            this.wait = _wait;
         }
 
          public LoginPage GotoLogin() {
             IWebElement loginButton = driver.FindElement(By.LinkText("Sign in"));
             loginButton.Click();
-            return new LoginPage(driver, action);
+            return new LoginPage(driver, action,wait);
         }
         public void init() {
             driver.Url = "https://www.google.ca/";
