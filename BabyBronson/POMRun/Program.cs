@@ -34,7 +34,9 @@ namespace POMRun
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             ComposeWindow compose = gmailhome.ClickCompose();
             compose.InputAddress("TESTEMAIL");
+            //Thread.Sleep(500);
             compose.InputSubject("Its a test");
+            compose.InputContent("This is a test email");
             //gmailhome.DeleteSelected();
             //email.respond(0,gmailhome);
             //driver.Close();
