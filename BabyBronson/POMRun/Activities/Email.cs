@@ -19,15 +19,15 @@ namespace POMTest.Activities
 {
      class Email
     {
-        public void respond(int count, GmailHomePage page)
+        public void Respond(int count, GmailHomePage page)
         {
 
-            String subject = String.Format("Response to {0}", page.GetSenderName(count));
-            String body = String.Format("Hi {0},\nI recieved your email at {1}", page.GetSenderName(count), page.GetSenderTime(count));
-            SendMail(page.GetSenderEmail(count), page.GetSenderName(count), "TestPass", subject, body);
+            String subject = String.Format("Response to {0}", page.getSenderName(count));
+            String body = String.Format("Hi {0},\nI recieved your email at {1}", page.getSenderName(count), page.getSenderTime(count));
+            sendMail(page.getSenderEmail(count), page.getSenderName(count), "TestPass", subject, body);
 
         }
-        public void SendMail(String address, String name, String fromPassword, String subject, String body)
+        public void sendMail(String address, String name, String fromPassword, String subject, String body)
         {
 
             MailAddress fromAddress = new MailAddress("DaveTestSe@gmail.com", "Dave Test");

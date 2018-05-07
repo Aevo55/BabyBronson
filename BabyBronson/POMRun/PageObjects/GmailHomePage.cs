@@ -26,51 +26,54 @@ namespace POMTest.PageObjects
             this.action = _action;
         }
 
-        public IWebElement GetSenderMeta(int count) {
+        public IWebElement getSenderMeta(int count) {
 
-            IWebElement selectedEmail = driver.FindElements(By.CssSelector("tr[class='zA zE']"))[count];
+            IWebElement selectedEmail = getEmails(count);
             IWebElement emailmeta = selectedEmail.FindElement(By.CssSelector("span[class='zF']"));
             return emailmeta;
 
         }
 
-        public IWebElement GetTimeMeta(int count) {
-            IWebElement selectedEmail = driver.FindElements(By.CssSelector("tr[class='zA zE']"))[count];
+        public IWebElement getTimeMeta(int count) {
+            IWebElement selectedEmail = getEmails(count);
             IWebElement timedata = selectedEmail.FindElement(By.CssSelector("td[class='xW xY ']"));
             IWebElement timemeta = timedata.FindElement(By.XPath("child::*"));
             return timemeta;
 
         }
-        public IWebElement GetDeleteButton() {
+        public IWebElement getDeleteButton() {
             return driver.FindElement(By.CssSelector("[act='10']"));
         }
         public void DeleteSelected() {
-            GetDeleteButton().Click();
+            getDeleteButton().Click();
         }
-        public EmailPage ClickEmail(int count) {
+        public EmailPage clickEmail(int count) {
             
-            GetEmails()[count].Click();
+            getEmails()[count].Click();
             return new EmailPage(driver, action);
         }
         public void SelectEmail(int count) {
-            IWebElement SelectedEmail = GetEmails()[count];
+            IWebElement SelectedEmail = getEmails()[count];
             SelectedEmail.FindElement(By.CssSelector("td[class='oZ-x3 xY']")).Click();
         }
 
-        public ReadOnlyCollection<IWebElement> GetEmails() {
+        public ReadOnlyCollection<IWebElement> getEmails() {
             return driver.FindElements(By.XPath("//tr[contains(@class,'zA')]"));
         }
-        public String GetSenderName(int count) {
-            return GetSenderMeta(count).GetAttribute("name");
+        public IWebElement getEmails(int count) {
+            return driver.FindElements(By.XPath("//tr[contains(@class,'zA')]"))[count];
+        }
+        public String getSenderName(int count) {
+            return getSenderMeta(count).GetAttribute("name");
 
         }
-        public String GetSenderEmail(int count)
+        public String getSenderEmail(int count)
         {
-            return GetSenderMeta(count).GetAttribute("email");
+            return getSenderMeta(count).GetAttribute("email");
 
         }
-        public String GetSenderTime(int count) {
-            return GetTimeMeta(count).GetAttribute("title");
+        public String getSenderTime(int count) {
+            return getTimeMeta(count).GetAttribute("title");
         }
  
     
