@@ -20,15 +20,15 @@ namespace POMTest.PageObjects
 
         }
 
-         public LoginPage GotoLogin() {
+         public LoginPage gotoLogin() {
             IWebElement loginButton = driver.FindElement(By.LinkText("Sign in"));
             loginButton.Click();
             return new LoginPage(driver, action);
         }
-        public void init() {
+        public void Init() {
             driver.Url = "https://www.google.ca/";
         }
-        public GmailHomePage GotoGmail() {
+        public GmailHomePage gotoGmail() {
             WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(5));
             IWebElement gmailLink = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='gbw']/div/div/div[1]/div[2]/a")));
             

@@ -23,7 +23,7 @@ namespace POMTest.PageObjects
 
 
         }
-        public GoogleHomePage Login(String username, String password) {
+        public GoogleHomePage login(String username, String password) {
 
             EnterUsername(username);
             EnterPassword(password);

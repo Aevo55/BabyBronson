@@ -27,11 +27,11 @@ namespace POMRun
 
 
             GoogleHomePage homepage = new GoogleHomePage(driver, action);
-            homepage.init();
+            homepage.Init();
             Email email = new Email();
-            LoginPage loginpage = homepage.GotoLogin();
-            GoogleHomePage LoggedInHomepage = loginpage.Login("DaveTestSe", "TestPass");
-            GmailHomePage gmailhome = LoggedInHomepage.GotoGmail();
+            LoginPage loginpage = homepage.gotoLogin();
+            GoogleHomePage LoggedInHomepage = loginpage.login("DaveTestSe", "TestPass");
+            GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             gmailhome.SelectEmail(0);
             gmailhome.SelectEmail(1);
             gmailhome.DeleteSelected();
