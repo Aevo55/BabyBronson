@@ -37,7 +37,8 @@ namespace POMTest.PageObjects
             return driver.FindElement(By.Id("identifierNext")); ;
         }
         public IWebElement getPasswordField() {
-            return driver.FindElement(By.XPath("//*[@id='password']//input"));
+            return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='password']//input")));
+            //return driver.FindElement(By.XPath("//*[@id='password']//input"));
         }
         public IWebElement getPasswordNextButton() {
             return driver.FindElement(By.Id("passwordNext"));

@@ -19,6 +19,16 @@ namespace POMTest.Activities
 {
      class Email
     {
+        public void sendMailManual(String address, String subject, String body, GmailHomePage page) {
+
+            ComposeWindow email = page.ClickCompose();
+            email.InputAddress(address);
+            email.InputSubject(subject);
+            email.InputContent(body);
+            email.SendEmail();
+
+        }
+
         public void Respond(int count, GmailHomePage page)
         {
 
