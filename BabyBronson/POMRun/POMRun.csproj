@@ -49,7 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\Email.cs" />
+    <Compile Include="Util\Email.cs" />
     <Compile Include="PageObjects\ComposeWindow.cs" />
     <Compile Include="PageObjects\EmailPage.cs" />
     <Compile Include="PageObjects\GmailHomePage.cs" />

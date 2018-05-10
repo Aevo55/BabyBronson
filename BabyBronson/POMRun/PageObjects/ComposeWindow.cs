@@ -53,7 +53,5 @@ namespace POMTest.PageObjects
             GetContentField().SendKeys(content);
         }
 
-
-
     }
 }
