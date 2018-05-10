@@ -48,7 +48,7 @@ namespace POMTest.PageObjects
         }
         public EmailPage clickEmail(int count) {
             getEmails()[count].Click();
-            return new EmailPage(driver, action);
+            return new EmailPage(driver, action, wait);
         }
         public void SelectEmail(int count) {
             IWebElement SelectedEmail = getEmails()[count];
