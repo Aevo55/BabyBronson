@@ -24,7 +24,7 @@ namespace POMTest.PageObjects
             this.wait = _wait;
         }
         public string getRecip() {
-            var outElem = driver.FindElement(By.ClassName("hb"));
+            var outElem = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("hb")));
             var dataElement = outElem.FindElement(By.CssSelector("span[dir='ltr']"));
             return dataElement.GetAttribute("email");
         }

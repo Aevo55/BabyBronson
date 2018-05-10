@@ -8,7 +8,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using POMTest.PageObjects;
-using POMTest.Util;
+using POMRun.Util;
 
 namespace POMRun
 {
@@ -41,6 +41,10 @@ namespace POMRun
             
             EmailPage currentemail = gmailhome.clickEmail(1);
             Console.WriteLine(currentemail.getAlias());
+            SqlLookup lookup = new SqlLookup();
+            string connectionString = lookup.GetConnectionString();
+            User user = lookup.GetUser(connectionString,currentemail.getAlias());
+            Console.WriteLine(user.GetFirstName() + " " + user.GetLastName());
             //email.sendMailManual("SeTest@mailinator.com", "This is a real email", "Body text", gmailhome);
             //Thread.Sleep(1000);
             //driver.Close();

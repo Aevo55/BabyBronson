@@ -14,7 +14,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading;
 using POMTest.PageObjects;
-namespace POMTest.Util
+namespace POMRun.Util
 
 {
      class Email
