@@ -45,6 +45,7 @@ namespace POMRun
             string connectionString = lookup.GetConnectionString();
             User user = lookup.GetUser(connectionString,currentemail.getAlias());
             Console.WriteLine(user.GetFirstName() + " " + user.GetLastName());
+            Console.WriteLine(currentemail.getInnerHTML());
             //email.sendMailManual("SeTest@mailinator.com", "This is a real email", "Body text", gmailhome);
             //Thread.Sleep(1000);
             //driver.Close();

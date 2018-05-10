@@ -34,6 +34,10 @@ namespace POMTest.PageObjects
             fullRecip = fullRecip.Split('@')[0];
             return fullRecip;
         }
+        public string getInnerHTML() {
+            var bodyText = driver.FindElement(By.CssSelector("div[class='ii gt']"));
+            return bodyText.GetAttribute("innerHTML");
+        }
         public GmailHomePage returnToInbox() {
             driver.FindElement(By.XPath("//*[@id=':5']/div[2]/div[1]/div/div[1]/div")).Click();
             return new GmailHomePage(driver, action, wait);
