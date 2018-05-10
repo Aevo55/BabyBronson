@@ -18,11 +18,13 @@ namespace POMTest.PageObjects
         IWebDriver driver;
         Actions action;
 
-        public EmailPage(IWebDriver _driver, Actions _action)
-        {
+        public EmailPage(IWebDriver _driver, Actions _action) {
             this.driver = _driver;
             this.action = _action;
         }
-
+        public string getRecip() {
+            var dataElement = driver.FindElement(By.CssSelector("span[dir='ltr']"));
+            return dataElement.GetAttribute("email");
+        }
     }
 }
