@@ -39,7 +39,8 @@ namespace POMRun
             GoogleHomePage LoggedInHomepage = loginpage.Login("DaveTestSe", "TestPass");
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             
-            gmailhome.clickEmail(1);
+            gmailhome.clickEmail(0);
+
             //email.sendMailManual("SeTest@mailinator.com", "This is a real email", "Body text", gmailhome);
             //Thread.Sleep(1000);
             //driver.Close();
