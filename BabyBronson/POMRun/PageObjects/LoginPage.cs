@@ -50,10 +50,8 @@ namespace POMTest.PageObjects
         public void EnterPassword(String password) {
             
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='password']//input")));
-            
-            //Thread.Sleep(500);
             getPasswordField().SendKeys(password);
-            getPasswordNextButton().Click();
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("passwordNext"))).Click();
 
         }
     }
