@@ -28,14 +28,14 @@ namespace POMTest.PageObjects
 
         public IWebElement getSenderMeta(int count) {
 
-            IWebElement selectedEmail = getEmails(count);
+            IWebElement selectedEmail = getEmail(count);
             IWebElement emailmeta = selectedEmail.FindElement(By.CssSelector("span[class='zF']"));
             return emailmeta;
 
         }
 
         public IWebElement getTimeMeta(int count) {
-            IWebElement selectedEmail = getEmails(count);
+            IWebElement selectedEmail = getEmail(count);
             IWebElement timedata = selectedEmail.FindElement(By.CssSelector("td[class='xW xY ']"));
             IWebElement timemeta = timedata.FindElement(By.XPath("child::*"));
             return timemeta;
@@ -48,7 +48,7 @@ namespace POMTest.PageObjects
             getDeleteButton().Click();
         }
         public EmailPage clickEmail(int count) {
-            getEmails()[count].Click();
+            getEmail(count).Click();
             return new EmailPage(driver, action, wait);
         }
         public void SelectEmail(int count) {
@@ -65,8 +65,8 @@ namespace POMTest.PageObjects
         public ReadOnlyCollection<IWebElement> getEmails() {
             return driver.FindElements(By.XPath("//tr[contains(@class,'zA')]"));
         }
-        public IWebElement getEmails(int count) {
-            return driver.FindElements(By.XPath("//tr[contains(@class,'zA')]"))[count];
+        public IWebElement getEmail(int count) {
+            return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA')][{0}]",count))));
         }
         public String getSenderName(int count) {
             return getSenderMeta(count).GetAttribute("name");
