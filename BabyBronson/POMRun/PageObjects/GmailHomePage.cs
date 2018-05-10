@@ -4,6 +4,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Drawing;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
 using System.Threading;

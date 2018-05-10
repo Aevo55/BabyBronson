@@ -8,7 +8,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using POMTest.PageObjects;
-using POMTest.Activities;
+using POMTest.Util;
 
 namespace POMRun
 {
@@ -38,9 +38,10 @@ namespace POMRun
             LoginPage loginpage = homepage.gotoLogin();
             GoogleHomePage LoggedInHomepage = loginpage.Login("DaveTestSe", "TestPass");
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
-            email.sendMailManual("SeTest@mailinator.com", "This is a real email", "Body text", gmailhome);
-            Thread.Sleep(1000);
-            driver.Close();
+            gmailhome.clickEmail(0);
+            //email.sendMailManual("SeTest@mailinator.com", "This is a real email", "Body text", gmailhome);
+            //Thread.Sleep(1000);
+            //driver.Close();
 
 
         }
