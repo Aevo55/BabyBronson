@@ -21,7 +21,13 @@ namespace POMRun
             Console.WriteLine("Working");
 
             ChromeOptions options = new ChromeOptions();
+            //*
             options.AddArgument("--start-maximized");
+            /*/
+            options.AddArgument("--headless");
+            options.AddArgument("--disable-gpu");
+            /**/
+            
             IWebDriver driver = new ChromeDriver(options);
             Actions action = new Actions(driver);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
