@@ -17,14 +17,25 @@ namespace POMTest.PageObjects
 
         IWebDriver driver;
         Actions action;
-
-        public EmailPage(IWebDriver _driver, Actions _action) {
+        WebDriverWait wait;
+        public EmailPage(IWebDriver _driver, Actions _action, WebDriverWait _wait) {
             this.driver = _driver;
             this.action = _action;
+            this.wait = _wait;
         }
         public string getRecip() {
             var dataElement = driver.FindElement(By.CssSelector("span[dir='ltr']"));
             return dataElement.GetAttribute("email");
         }
-    }
+        public string getAlias() {
+            var fullRecip = getRecip();
+            fullRecip = fullRecip.Split('+')[1];
+            fullRecip = fullRecip.Split('@')[0];
+            return fullRecip;
+        }
+        public GmailHomePage returnToInbox() {
+            driver.FindElement(By.XPath("//*[@id=':5']/div[2]/div[1]/div/div[1]/div")).Click();
+            return new GmailHomePage(driver, action, wait);
+        }
+   }
 }

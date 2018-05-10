@@ -3,6 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -46,7 +47,6 @@ namespace POMTest.PageObjects
             getDeleteButton().Click();
         }
         public EmailPage clickEmail(int count) {
-            
             getEmails()[count].Click();
             return new EmailPage(driver, action);
         }
