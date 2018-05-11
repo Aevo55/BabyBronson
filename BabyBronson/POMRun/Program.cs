@@ -52,7 +52,7 @@ namespace POMRun
                 if (gmailhome.GetUnreadEmails().Count > 0) {
                     currentemail = gmailhome.clickUnreadEmail(1);
                     user = lookup.GetUser(connectionString, currentemail.getAlias());
-                    email.sendMail("s.dunlop@socyinc.com", "Forwarding Service", "TestPass", "FWD:" + currentemail.getSubject(), user.MakeString() + currentemail.getInnerHTML());
+                    email.forwardMail(destinationaddress,loginpassword,user, currentemail);
                     gmailhome = currentemail.returnToInbox();
                 } else {
                     gmailhome.clickOlder();
