@@ -25,7 +25,6 @@ namespace POMTest.PageObjects
             this.action = _action;
             this.wait = _wait;
         }
-
         public IWebElement getSenderMeta(int count) {
 
             IWebElement selectedEmail = getEmail(count);
@@ -33,7 +32,6 @@ namespace POMTest.PageObjects
             return emailmeta;
 
         }
-
         public IWebElement getTimeMeta(int count) {
             IWebElement selectedEmail = getEmail(count);
             IWebElement timedata = selectedEmail.FindElement(By.CssSelector("td[class='xW xY ']"));
@@ -44,13 +42,6 @@ namespace POMTest.PageObjects
         public IWebElement getDeleteButton() {
             return driver.FindElement(By.CssSelector("[act='10']"));
         }
-        public void DeleteSelected() {
-            getDeleteButton().Click();
-        }
-        public EmailPage clickEmail(int count) {
-            getEmail(count).Click();
-            return new EmailPage(driver, action, wait);
-        }
         public void SelectEmail(int count) {
             IWebElement SelectedEmail = getEmails()[count];
             SelectedEmail.FindElement(By.CssSelector("td[class='oZ-x3 xY']")).Click();
@@ -58,15 +49,22 @@ namespace POMTest.PageObjects
         public IWebElement GetComposeButton() {
             return driver.FindElement(By.CssSelector("[class='z0']")).FindElement(By.XPath("child::*"));
         }
-        public ComposeWindow ClickCompose() {
-            GetComposeButton().Click();
-            return new ComposeWindow(driver, action, wait);
+        public IWebElement getEmail(int count) {
+            return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA')][{0}]",count))));
         }
         public ReadOnlyCollection<IWebElement> getEmails() {
             return driver.FindElements(By.XPath("//tr[contains(@class,'zA')]"));
         }
-        public IWebElement getEmail(int count) {
-            return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA')][{0}]",count))));
+        public ComposeWindow ClickCompose() {
+            GetComposeButton().Click();
+            return new ComposeWindow(driver, action, wait);
+        }
+        public void DeleteSelected() {
+            getDeleteButton().Click();
+        }
+        public EmailPage clickEmail(int count) {
+            getEmail(count).Click();
+            return new EmailPage(driver, action, wait);
         }
         public String getSenderName(int count) {
             return getSenderMeta(count).GetAttribute("name");

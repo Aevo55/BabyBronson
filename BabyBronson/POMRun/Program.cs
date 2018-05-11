@@ -27,28 +27,28 @@ namespace POMRun
             options.AddArgument("--headless");
             options.AddArgument("--disable-gpu");
             /**/
-            
+
+
+            SqlLookup lookup = new SqlLookup();
+            string connectionString = lookup.GetConnectionString();
             IWebDriver driver = new ChromeDriver(options);
             Actions action = new Actions(driver);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
-
+            Email email = new Email();
+            User user;
             GoogleHomePage homepage = new GoogleHomePage(driver, action,wait);
             homepage.Init();
-            Email email = new Email();
+            
             LoginPage loginpage = homepage.gotoLogin();
             GoogleHomePage LoggedInHomepage = loginpage.Login("DaveTestSe", "TestPass");
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
-            
-            EmailPage currentemail = gmailhome.clickEmail(1);
-            Console.WriteLine(currentemail.getAlias());
-            SqlLookup lookup = new SqlLookup();
-            string connectionString = lookup.GetConnectionString();
-            User user = lookup.GetUser(connectionString,currentemail.getAlias());
-            Console.WriteLine(user.GetFirstName() + " " + user.GetLastName());
-            Console.WriteLine(currentemail.getInnerHTML());
+            EmailPage currentemail;
+
+            currentemail = gmailhome.clickEmail(1);
+            user = lookup.GetUser(connectionString, currentemail.getAlias());
             email.sendMail("s.dunlop@socyinc.com", "Forwarding Service", "TestPass", "Forwarded Email", user.MakeString() + currentemail.getInnerHTML());
-            //email.sendMailManual("SeTest@mailinator.com", "This is a real email", "Body text", gmailhome);
-            //Thread.Sleep(1000);
+            gmailhome = currentemail.returnToInbox();
+
             //driver.Close();
 
 
