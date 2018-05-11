@@ -58,7 +58,7 @@ namespace POMRun
                     gmailhome.clickOlder();
                 }
             }
-            //driver.Close();
+            driver.Close();
         }
 
 

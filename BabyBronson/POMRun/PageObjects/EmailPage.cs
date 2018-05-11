@@ -36,8 +36,10 @@ namespace POMTest.PageObjects {
         }
         public string getAlias() {
             var fullRecip = getRecip();
-            fullRecip = fullRecip.Split('+')[1];
-            fullRecip = fullRecip.Split('@')[0];
+            if (fullRecip.Contains("+")) {
+                fullRecip = fullRecip.Split('+')[1];
+                fullRecip = fullRecip.Split('@')[0];
+            }
             return fullRecip;
         }
         public string getInnerHTML() {
