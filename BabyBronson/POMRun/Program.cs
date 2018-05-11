@@ -50,9 +50,11 @@ namespace POMRun
             while (gmailhome.GetUnreadEmails().Count > 0) {
              currentemail = gmailhome.clickUnreadEmail(1);
             user = lookup.GetUser(connectionString, currentemail.getAlias());
-            email.sendMail(destinationaddress, "Forwarding Service",loginpassword, "FWD:" + currentemail.getSubject(), user.MakeString() + currentemail.getInnerHTML());
+            email.sendMail("s.dunlop@socyinc.com", "Forwarding Service", "TestPass", "FWD:" + currentemail.getSubject(), user.MakeString() + currentemail.getInnerHTML());
             gmailhome = currentemail.returnToInbox();   
             }
+            
+
             //driver.Close();
         }
 
