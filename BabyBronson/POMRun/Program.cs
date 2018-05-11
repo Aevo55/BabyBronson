@@ -44,7 +44,7 @@ namespace POMRun
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             EmailPage currentemail;
             while (gmailhome.GetUnreadEmails().Count > 0) {
-                currentemail = gmailhome.clickUnreadEmail(0);
+                currentemail = gmailhome.clickUnreadEmail(1);
                 user = lookup.GetUser(connectionString, currentemail.getAlias());
                 email.sendMail("s.dunlop@socyinc.com", "Forwarding Service", "TestPass", "FWD:" + currentemail.getSubject(), user.MakeString() + currentemail.getInnerHTML());
                 gmailhome = currentemail.returnToInbox();
