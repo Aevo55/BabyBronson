@@ -29,7 +29,7 @@ namespace POMRun.Util
 
                     while (reader.Read())
                     {
-                        Console.WriteLine(reader[1].ToString());
+                        //Console.WriteLine(reader[1].ToString());
                         if (reader[1].ToString().ToUpper().Equals(GUID))
                         {
 
@@ -51,7 +51,7 @@ namespace POMRun.Util
                 }
             }
             Console.WriteLine("No user found");
-            return new User("Notauser", "Notauser", "NULL", -1); ;
+            return new User("Not a", "Real User", "NULL", -1); ;
         }
 
         public String GetConnectionString()

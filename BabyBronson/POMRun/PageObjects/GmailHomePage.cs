@@ -93,11 +93,22 @@ namespace POMTest.PageObjects
             }
         }
         public IWebElement getOlderButton() {
-            return driver.FindElement(By.CssSelector("div[aria-label='Older']"));
+            try {
+                return wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("div[aria-label='Older']")));
+            } catch (NoSuchElementException){
+                    driver.Navigate().Refresh();
+                    return null;
+            }
         }
         public void clickOlder() {
-            var olderButton = getOlderButton();
-            olderButton.Click();
+            try
+            {
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("div[aria-label='Older']"))).Click();
+            }
+            catch (NoSuchElementException)
+            {
+                driver.Navigate().Refresh();
+            }
         }
         public String getSenderEmail(int count)
         {

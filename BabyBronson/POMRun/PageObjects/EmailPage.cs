@@ -30,9 +30,9 @@ namespace POMTest.PageObjects {
             return driver.FindElement(By.CssSelector("h2[class='hP']"));
         }
         public string getRecip() {
-            var outElem = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("hb")));
-            var dataElement = outElem.FindElement(By.CssSelector("span[dir='ltr']"));
-            return dataElement.GetAttribute("email");
+                var outElem = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("hb")));
+                var dataElement = outElem.FindElement(By.CssSelector("span[dir='ltr']"));
+                return dataElement.GetAttribute("email");
         }
         public string getAlias() {
             var fullRecip = getRecip();
