@@ -82,7 +82,20 @@ namespace POMTest.PageObjects
         }
         public String getSenderName(int count) {
             return getSenderMeta(count).GetAttribute("name");
-
+        }
+        public int getNumUnread() {
+            String totalEmails = driver.FindElement(By.XPath("//*[@id=':ig']/div/div[2]/span/a")).GetAttribute("innerHTML");
+            String totalEmailsFormatted = totalEmails.Split('(')[1].Split(')')[0];
+            return int.Parse(totalEmailsFormatted);
+        }
+        public IWebElement getOlderButton() {
+            return driver.FindElement(By.CssSelector("div[aria-label='Older']"));
+        }
+        public void clickOlder() {
+            var olderButton = getOlderButton();
+            if (!olderButton.GetAttribute("aria-disabled").Equals("true")) {
+                olderButton.Click();
+            }
         }
         public String getSenderEmail(int count)
         {
