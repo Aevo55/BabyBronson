@@ -48,6 +48,8 @@ namespace POMRun
                 user = lookup.GetUser(connectionString, currentemail.getAlias());
                 email.sendMail("s.dunlop@socyinc.com", "Forwarding Service", "TestPass", "FWD:" + currentemail.getSubject(), user.MakeString() + currentemail.getInnerHTML());
                 gmailhome = currentemail.returnToInbox();
+            }if(gmailhome.getNumUnread() > 0) {
+
             }
             
 

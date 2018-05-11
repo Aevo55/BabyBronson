@@ -84,7 +84,11 @@ namespace POMTest.PageObjects
         }
         public String getSenderName(int count) {
             return getSenderMeta(count).GetAttribute("name");
-
+        }
+        public int getNumUnread() {
+            String totalEmails = driver.FindElement(By.XPath("//*[@id=':ig']/div/div[2]/span/a")).GetAttribute("innerHTML");
+            String totalEmailsFormatted = totalEmails.Split('(')[1].Split(')')[0];
+            return int.Parse(totalEmailsFormatted);
         }
         public String getSenderEmail(int count)
         {
