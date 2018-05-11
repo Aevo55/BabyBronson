@@ -39,26 +39,28 @@ namespace POMRun
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
             Email email = new Email();
             User user;
-            GoogleHomePage homepage = new GoogleHomePage(driver, action,wait);
+            GoogleHomePage homepage = new GoogleHomePage(driver, action, wait);
             homepage.Init();
-            
+
             LoginPage loginpage = homepage.gotoLogin();
             GoogleHomePage LoggedInHomepage = loginpage.Login(loginaddress, loginpassword);
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             EmailPage currentemail;
 
+            while (true) { 
 
-
-            while (gmailhome.getNumUnread() > 0) {
-                if (gmailhome.GetUnreadEmails().Count > 0) {
-                    currentemail = gmailhome.clickUnreadEmail(1);
-                    user = lookup.GetUser(connectionString, currentemail.getAlias());
-                    email.forwardMail(destinationaddress,loginpassword,user, currentemail);
-                    gmailhome = currentemail.returnToInbox();
-                } else {
-                    gmailhome.clickOlder();
+                while (gmailhome.getNumUnread() > 0) {
+                    if (gmailhome.GetUnreadEmails().Count > 0) {
+                        currentemail = gmailhome.clickUnreadEmail(1);
+                        user = lookup.GetUser(connectionString, currentemail.getAlias());
+                        email.forwardMail(destinationaddress, loginpassword, user, currentemail);
+                        gmailhome = currentemail.returnToInbox();
+                    } else {
+                        gmailhome.clickOlder();
+                    }
                 }
-            }
+                Thread.Sleep(TimeSpan.FromSeconds(15));
+        }
             driver.Close();
         }
 
