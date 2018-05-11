@@ -37,6 +37,9 @@ namespace POMRun.Util
             sendMail(page.getSenderEmail(count), page.getSenderName(count), "TestPass", subject, body);
 
         }
+        public void forwardMail(String destinationaddress,String loginpassword, User user, EmailPage currentemail) {
+            sendMail(destinationaddress, "Forwarding Service", loginpassword, "FWD:" + currentemail.getSubject(), user.MakeString() + currentemail.getInnerHTML());
+        }
         public void sendMail(String address, String name, String fromPassword, String subject, String body)
         {
 
