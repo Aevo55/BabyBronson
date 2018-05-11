@@ -10,11 +10,8 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Threading;
-namespace POMTest.PageObjects
-{
-   public class EmailPage
-    {
-
+namespace POMTest.PageObjects {
+   public class EmailPage {
         IWebDriver driver;
         Actions action;
         WebDriverWait wait;
