@@ -23,6 +23,12 @@ namespace POMTest.PageObjects
             this.action = _action;
             this.wait = _wait;
         }
+        public IWebElement GetBodyText(){
+            return driver.FindElement(By.CssSelector("div[class='ii gt ']"));
+        }
+        public IWebElement GetInboxButton() {
+            return driver.FindElement(By.XPath("//*[@id=':5']/div[2]/div[1]/div/div[1]/div"));
+        }
         public string getRecip() {
             var outElem = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("hb")));
             var dataElement = outElem.FindElement(By.CssSelector("span[dir='ltr']"));
@@ -34,7 +40,7 @@ namespace POMTest.PageObjects
             fullRecip = fullRecip.Split('@')[0];
             return fullRecip;
         }
-        public string getInnerHTML() {
+        public String getInnerHTML() {
             var bodyText = driver.FindElement(By.CssSelector("div[class='ii gt ']"));
             return bodyText.GetAttribute("innerHTML");
         }
@@ -43,11 +49,7 @@ namespace POMTest.PageObjects
             return subObj.GetAttribute("value");
         }
         public GmailHomePage returnToInbox() {
-            /*
             driver.FindElement(By.XPath("//*[@id=':5']/div[2]/div[1]/div/div[1]/div")).Click();
-            /*/
-            driver.FindElement(By.ClassName("ar6 T-I-J3 J-J5-Ji")).Click();
-            //*/
             return new GmailHomePage(driver, action, wait);
         }
    }
