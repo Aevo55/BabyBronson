@@ -34,8 +34,8 @@ namespace POMTest.PageObjects
             fullRecip = fullRecip.Split('@')[0];
             return fullRecip;
         }
-        public string getInnerHTML() {
-            var bodyText = driver.FindElement(By.CssSelector("div[class='ii gt']"));
+        public String getInnerHTML() {
+            var bodyText = driver.FindElement(By.CssSelector("div[class='ii gt ']"));
             return bodyText.GetAttribute("innerHTML");
         }
         public GmailHomePage returnToInbox() {
