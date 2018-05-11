@@ -35,11 +35,19 @@ namespace POMTest.PageObjects
             return fullRecip;
         }
         public string getInnerHTML() {
-            var bodyText = driver.FindElement(By.CssSelector("div[class='ii gt']"));
+            var bodyText = driver.FindElement(By.CssSelector("div[class='ii gt ']"));
             return bodyText.GetAttribute("innerHTML");
         }
+        public string getSubject() {
+            var subObj = driver.FindElement(By.CssSelector("h2[class='hP']"));
+            return subObj.GetAttribute("value");
+        }
         public GmailHomePage returnToInbox() {
+            /*
             driver.FindElement(By.XPath("//*[@id=':5']/div[2]/div[1]/div/div[1]/div")).Click();
+            /*/
+            driver.FindElement(By.ClassName("ar6 T-I-J3 J-J5-Ji")).Click();
+            //*/
             return new GmailHomePage(driver, action, wait);
         }
    }
