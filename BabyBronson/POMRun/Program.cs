@@ -32,6 +32,7 @@ namespace POMRun
 
             SqlLookup lookup = new SqlLookup();
             string connectionString = lookup.GetConnectionString();
+            Console.WriteLine("Enter a destination address");
             String destinationaddress = Console.ReadLine();
             IWebDriver driver = new ChromeDriver(options);
             Actions action = new Actions(driver);
