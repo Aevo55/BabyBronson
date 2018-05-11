@@ -44,7 +44,7 @@ namespace POMTest.PageObjects {
             return GetBodyElement().GetAttribute("innerHTML");
         }
         public string getSubject() { 
-            return GetSubjectElement().GetAttribute("value");
+            return GetSubjectElement().Text;
         }
         public GmailHomePage returnToInbox() {
             GetInboxButton().Click();

@@ -30,14 +30,12 @@ namespace POMTest.PageObjects
             IWebElement selectedEmail = getEmail(count);
             IWebElement emailmeta = selectedEmail.FindElement(By.CssSelector("span[class='zF']"));
             return emailmeta;
-
         }
         public IWebElement getTimeMeta(int count) {
             IWebElement selectedEmail = getEmail(count);
             IWebElement timedata = selectedEmail.FindElement(By.CssSelector("td[class='xW xY ']"));
             IWebElement timemeta = timedata.FindElement(By.XPath("child::*"));
             return timemeta;
-
         }
         public IWebElement getDeleteButton() {
             return driver.FindElement(By.CssSelector("[act='10']"));
