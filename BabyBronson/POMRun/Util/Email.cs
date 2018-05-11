@@ -48,6 +48,7 @@ namespace POMRun.Util
                 Host = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
+                
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
@@ -56,6 +57,7 @@ namespace POMRun.Util
             using (MailMessage message = new MailMessage(fromAddress, toAddress)
             {
                 Subject = subject,
+                IsBodyHtml = true,
                 Body = body
             })
 
