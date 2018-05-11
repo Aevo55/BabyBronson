@@ -40,7 +40,7 @@ namespace POMTest.PageObjects {
             return subObj.GetAttribute("value");
         }
         public GmailHomePage returnToInbox() {
-            /*
+            //*
             driver.FindElement(By.XPath("//*[@id=':5']/div[2]/div[1]/div/div[1]/div")).Click();
             /*/
             driver.FindElement(By.ClassName("ar6 T-I-J3 J-J5-Ji")).Click();
