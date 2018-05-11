@@ -50,8 +50,6 @@ namespace POMRun
             gmailhome = currentemail.returnToInbox();
 
             //driver.Close();
-
-
         }
 
 
