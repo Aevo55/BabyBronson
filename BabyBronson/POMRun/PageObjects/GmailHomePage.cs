@@ -52,8 +52,19 @@ namespace POMTest.PageObjects
         public IWebElement getEmail(int count) {
             return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA')][{0}]",count))));
         }
+        public IWebElement getUnreadEmail(int count)
+        {
+            return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA zE')][{0}]", count))));
+        }
         public ReadOnlyCollection<IWebElement> getEmails() {
             return driver.FindElements(By.XPath("//tr[contains(@class,'zA')]"));
+        }
+        public ReadOnlyCollection<IWebElement> GetUnreadEmails() {
+            /*
+            return driver.FindElements(By.XPath("//tr[contains(@class,'zA zE')]"));
+            /*/
+            return driver.FindElements(By.CssSelector("tr[class='zA zE']"));
+            /**/
         }
         public ComposeWindow ClickCompose() {
             GetComposeButton().Click();
@@ -64,6 +75,11 @@ namespace POMTest.PageObjects
         }
         public EmailPage clickEmail(int count) {
             getEmail(count).Click();
+            return new EmailPage(driver, action, wait);
+        }
+        public EmailPage clickUnreadEmail(int count)
+        {
+            getUnreadEmail(count).Click();
             return new EmailPage(driver, action, wait);
         }
         public String getSenderName(int count) {

@@ -20,6 +20,15 @@ namespace POMTest.PageObjects {
             this.action = _action;
             this.wait = _wait;
         }
+        public IWebElement GetInboxButton() {
+            return driver.FindElement(By.CssSelector("div[class='ar6 T-I-J3 J-J5-Ji']"));
+        }
+        public IWebElement GetBodyElement() {
+            return driver.FindElement(By.CssSelector("div[class='ii gt ']"));
+        }
+        public IWebElement GetSubjectElement() {
+            return driver.FindElement(By.CssSelector("h2[class='hP']"));
+        }
         public string getRecip() {
             var outElem = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("hb")));
             var dataElement = outElem.FindElement(By.CssSelector("span[dir='ltr']"));
@@ -32,19 +41,13 @@ namespace POMTest.PageObjects {
             return fullRecip;
         }
         public string getInnerHTML() {
-            var bodyText = driver.FindElement(By.CssSelector("div[class='ii gt ']"));
-            return bodyText.GetAttribute("innerHTML");
+            return GetBodyElement().GetAttribute("innerHTML");
         }
-        public string getSubject() {
-            var subObj = driver.FindElement(By.CssSelector("h2[class='hP']"));
-            return subObj.GetAttribute("value");
+        public string getSubject() { 
+            return GetSubjectElement().GetAttribute("value");
         }
         public GmailHomePage returnToInbox() {
-            //*
-            driver.FindElement(By.XPath("//*[@id=':5']/div[2]/div[1]/div/div[1]/div")).Click();
-            /*/
-            driver.FindElement(By.ClassName("ar6 T-I-J3 J-J5-Ji")).Click();
-            //*/
+            GetInboxButton().Click();
             return new GmailHomePage(driver, action, wait);
         }
    }
