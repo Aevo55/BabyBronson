@@ -27,10 +27,12 @@ namespace POMRun
             options.AddArgument("--headless");
             options.AddArgument("--disable-gpu");
             /**/
-
+            const String loginaddress = "DaveTestSe";
+            const String loginpassword = "TestPass";
 
             SqlLookup lookup = new SqlLookup();
             string connectionString = lookup.GetConnectionString();
+            String destinationaddress = Console.ReadLine();
             IWebDriver driver = new ChromeDriver(options);
             Actions action = new Actions(driver);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
@@ -40,7 +42,7 @@ namespace POMRun
             homepage.Init();
             
             LoginPage loginpage = homepage.gotoLogin();
-            GoogleHomePage LoggedInHomepage = loginpage.Login("DaveTestSe", "TestPass");
+            GoogleHomePage LoggedInHomepage = loginpage.Login(loginaddress, loginpassword);
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             EmailPage currentemail;
             
@@ -48,7 +50,7 @@ namespace POMRun
             while (gmailhome.GetUnreadEmails().Count > 0) {
              currentemail = gmailhome.clickUnreadEmail(1);
             user = lookup.GetUser(connectionString, currentemail.getAlias());
-            email.sendMail("s.dunlop@socyinc.com", "Forwarding Service", "TestPass", "FWD:" + currentemail.getSubject(), user.MakeString() + currentemail.getInnerHTML());
+            email.sendMail(destinationaddress, "Forwarding Service",loginpassword, "FWD:" + currentemail.getSubject(), user.MakeString() + currentemail.getInnerHTML());
             gmailhome = currentemail.returnToInbox();   
             }
             //driver.Close();
