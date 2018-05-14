@@ -33,17 +33,14 @@ namespace POMTest.PageObjects
         }
         public IWebElement getUsernameField() {
             return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.Id("identifierId")));
-            
         }
         public IWebElement getUsernameNextButton() {
             return driver.FindElement(By.Id("identifierNext")); ;
         }
         public IWebElement getPasswordField() {
             return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='password']//input")));
-
         }
         public IWebElement getPasswordNextButton() {
-            
             return driver.FindElement(By.Id("passwordNext"));
         }
         public void EnterUsername(String username) {
