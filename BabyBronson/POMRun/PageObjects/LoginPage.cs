@@ -40,11 +40,10 @@ namespace POMTest.PageObjects
             return driver.FindElement(By.CssSelector("span[class='RveJvd snByac']")); ;
         }
         public IWebElement getPasswordField() {
-            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("input[name='password']")));
-
+            //return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("input[name='password']")));
+            return driver.FindElement(By.CssSelector("input[type='password']"));
         }
         public IWebElement getPasswordNextButton() {
-            
             return driver.FindElement(By.Id("passwordNext"));
         }
         public void EnterUsername(String username) {
@@ -53,8 +52,9 @@ namespace POMTest.PageObjects
             //getUsernameNextButton().Click();
         }
         public void EnterPassword(String password) {
+            //wait.Until(Waitcon.ExpectedConditions.ElementExists(By.CssSelector("div[id='password']")));
             getPasswordField().SendKeys(password);
-            getPasswordField().SendKeys(Keys.Return);
+            getPasswordField().SendKeys(Keys.Enter);
         }
     }
 }
