@@ -3,6 +3,7 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using Waitcon = SeleniumExtras.WaitHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
@@ -29,7 +30,6 @@ namespace POMRun.Util
 
                     while (reader.Read())
                     {
-                        //Console.WriteLine(reader[1].ToString());
                         if (reader[1].ToString().ToUpper().Equals(GUID))
                         {
 
@@ -66,8 +66,6 @@ namespace POMRun.Util
                                             "user id={0};" +
                                             "password={1}", username, password);
             return connectionString;
-
-
         }
 
         public Boolean IsValidEmail(string email)

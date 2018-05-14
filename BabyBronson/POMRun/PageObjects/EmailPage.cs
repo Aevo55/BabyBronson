@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Waitcon = SeleniumExtras.WaitHelpers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -30,7 +31,7 @@ namespace POMTest.PageObjects {
             return driver.FindElement(By.CssSelector("h2[class='hP']"));
         }
         public string getRecip() {
-                var outElem = wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("hb")));
+                var outElem = wait.Until(Waitcon.ExpectedConditions.ElementIsVisible(By.ClassName("hb")));
                 var dataElement = outElem.FindElement(By.CssSelector("span[dir='ltr']"));
                 return dataElement.GetAttribute("email");
         }

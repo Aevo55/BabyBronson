@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Waitcon = SeleniumExtras.WaitHelpers;
 using System;
 using System.Data;
 using System.Data.SqlClient;

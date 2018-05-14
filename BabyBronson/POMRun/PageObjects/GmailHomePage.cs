@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Waitcon = SeleniumExtras.WaitHelpers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -48,11 +49,11 @@ namespace POMTest.PageObjects
             return driver.FindElement(By.CssSelector("[class='z0']")).FindElement(By.XPath("child::*"));
         }
         public IWebElement getEmail(int count) {
-            return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA')][{0}]",count))));
+            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA')][{0}]",count))));
         }
         public IWebElement getUnreadEmail(int count)
         {
-            return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA zE')][{0}]", count))));
+            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.XPath(String.Format("//tr[contains(@class,'zA zE')][{0}]", count))));
         }
         public ReadOnlyCollection<IWebElement> getEmails() {
             return driver.FindElements(By.XPath("//tr[contains(@class,'zA')]"));
@@ -84,7 +85,9 @@ namespace POMTest.PageObjects
             return getSenderMeta(count).GetAttribute("name");
         }
         public int getNumUnread() {
-            String totalEmails = driver.FindElement(By.CssSelector("a[class='J-Ke n0'")).GetAttribute("innerHTML");
+            
+            String totalEmails = wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable
+                                (By.CssSelector("a[class='J-Ke n0'"))).GetAttribute("innerHTML");
             if (totalEmails.Contains("(")) {
                 String totalEmailsFormatted = totalEmails.Split('(')[1].Split(')')[0];
                 return int.Parse(totalEmailsFormatted);
@@ -94,7 +97,7 @@ namespace POMTest.PageObjects
         }
         public IWebElement getOlderButton() {
             try {
-                return wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("div[aria-label='Older']")));
+                return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("div[aria-label='Older']")));
             } catch (NoSuchElementException){
                     driver.Navigate().Refresh();
                     return null;
@@ -103,7 +106,7 @@ namespace POMTest.PageObjects
         public void clickOlder() {
             try
             {
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("div[aria-label='Older']"))).Click();
+                wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("div[aria-label='Older']"))).Click();
             }
             catch (NoSuchElementException)
             {

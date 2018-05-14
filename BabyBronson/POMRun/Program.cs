@@ -21,12 +21,12 @@ namespace POMRun
             Console.WriteLine("Working");
 
             ChromeOptions options = new ChromeOptions();
-            //*
-            options.AddArgument("--start-maximized");
-            /*/
-            options.AddArgument("--headless");
-            options.AddArgument("--disable-gpu");
-            /**/
+
+            //options.AddArgument("--start-maximized");
+            options.AddArgument("window-size=1920,1080");
+            //options.AddArgument("--headless");
+            //options.AddArgument("--disable-gpu");
+
             const String loginaddress = "DaveTestSe";
             const String loginpassword = "TestPass";
 
@@ -41,9 +41,9 @@ namespace POMRun
             User user;
             GoogleHomePage homepage = new GoogleHomePage(driver, action, wait);
             homepage.Init();
-
             LoginPage loginpage = homepage.gotoLogin();
             GoogleHomePage LoggedInHomepage = loginpage.Login(loginaddress, loginpassword);
+
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             EmailPage currentemail;
 
@@ -65,7 +65,6 @@ namespace POMRun
         }
             driver.Close();
         }
-
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Waitcon = SeleniumExtras.WaitHelpers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -18,6 +19,7 @@ namespace POMTest.PageObjects
             this.driver = _driver;
             this.action = _action;
             this.wait = _wait;
+            //driver.Url = "https://www.google.ca/";
         }
 
          public LoginPage gotoLogin() {
@@ -30,7 +32,8 @@ namespace POMTest.PageObjects
         }
         public GmailHomePage gotoGmail() {
             WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(5));
-            IWebElement gmailLink = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='gbw']/div/div/div[1]/div[2]/a")));
+            IWebElement gmailLink = wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(
+                                    By.CssSelector("[href='https://mail.google.com/mail/?tab=wm']")));
             gmailLink.Click();
             return new GmailHomePage(driver, action,wait);
         }

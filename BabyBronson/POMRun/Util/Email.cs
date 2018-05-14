@@ -1,4 +1,5 @@
 ﻿using System;
+using Waitcon = SeleniumExtras.WaitHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,6 @@ namespace POMRun.Util
 
             MailAddress fromAddress = new MailAddress("DaveTestSe@gmail.com", "Dave Test");
             MailAddress toAddress = new MailAddress(address, name);
-
             SmtpClient client = new SmtpClient
             {
                 Host = "smtp.gmail.com",

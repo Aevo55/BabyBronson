@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
+using Waitcon = SeleniumExtras.WaitHelpers;
 using System;
 using System.Drawing;
 using System.IO;
@@ -31,16 +32,18 @@ namespace POMTest.PageObjects
 
         }
         public IWebElement getUsernameField() {
-            return driver.FindElement(By.Id("identifierId"));
+            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.Id("identifierId")));
+            
         }
         public IWebElement getUsernameNextButton() {
             return driver.FindElement(By.Id("identifierNext")); ;
         }
         public IWebElement getPasswordField() {
-            return wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='password']//input")));
-            //return driver.FindElement(By.XPath("//*[@id='password']//input"));
+            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='password']//input")));
+
         }
         public IWebElement getPasswordNextButton() {
+            
             return driver.FindElement(By.Id("passwordNext"));
         }
         public void EnterUsername(String username) {
@@ -49,9 +52,10 @@ namespace POMTest.PageObjects
         }
         public void EnterPassword(String password) {
             
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='password']//input")));
+            wait.Until(Waitcon.ExpectedConditions.ElementExists(By.XPath("//*[@id='password']//input")));
             getPasswordField().SendKeys(password);
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.Id("passwordNext"))).Click();
+            Thread.Sleep(500);
+            wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.Id("passwordNext"))).Click();
 
         }
     }
