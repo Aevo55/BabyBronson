@@ -22,11 +22,13 @@ namespace POMRun
 
             ChromeOptions options = new ChromeOptions();
 
-            options.AddArgument("--start-maximized");
-            options.AddArgument("--window-size=1920,1080");
-            //options.AddArgument("--remote-debugging-port=9222");
-            //options.AddArgument("--headless");
-            options.AddArgument("--disable-gpu");
+            //options.AddArgument("--start-maximized");
+            //*
+            
+
+            options.AddArgument("--headless");
+            //options.AddArgument("window-size=1920,1080");
+            options.AddArgument("--disable-gpu");//*/
 
             const String loginaddress = "DaveTestSe";
             const String loginpassword = "TestPass";
@@ -36,7 +38,6 @@ namespace POMRun
             Console.WriteLine("Enter a destination address");
             String destinationaddress = Console.ReadLine();
             IWebDriver driver = new ChromeDriver(options);
-            
             Actions action = new Actions(driver);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
             Email email = new Email();
@@ -49,8 +50,8 @@ namespace POMRun
             GmailHomePage gmailhome = LoggedInHomepage.gotoGmail();
             EmailPage currentemail;
 
-            while (true) {
-                
+            while (true) { 
+
                 while (gmailhome.getNumUnread() > 0) {
                     if (gmailhome.GetUnreadEmails().Count > 0) {
                         currentemail = gmailhome.clickUnreadEmail(1);

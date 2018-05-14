@@ -32,20 +32,25 @@ namespace POMTest.PageObjects
 
         }
         public IWebElement getUsernameField() {
-            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.Id("identifierId")));
+            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("input[type='email']")));
+            //return driver.FindElement(By.CssSelector("input[type='email']"));
+            
         }
         public IWebElement getUsernameNextButton() {
-            return driver.FindElement(By.Id("identifierNext")); ;
+            return driver.FindElement(By.CssSelector("span[class='RveJvd snByac']")); ;
         }
         public IWebElement getPasswordField() {
             return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='password']//input")));
+
         }
         public IWebElement getPasswordNextButton() {
+            
             return driver.FindElement(By.Id("passwordNext"));
         }
         public void EnterUsername(String username) {
             getUsernameField().SendKeys(username);
-            getUsernameNextButton().Click();
+            action.SendKeys(Keys.Enter);
+            //getUsernameNextButton().Click();
         }
         public void EnterPassword(String password) {
             
