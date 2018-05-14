@@ -70,7 +70,8 @@ namespace POMTest.PageObjects
             return new ComposeWindow(driver, action, wait);
         }
         public void RefreshInbox() {
-            wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("div[class='asf T-I-J3 J-J5-Ji']"))).Click();
+            wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("div[class='asf T-I-J3 J-J5-Ji']")));
+            driver.Navigate().Refresh();
         }
         public void DeleteSelected() {
             getDeleteButton().Click();
