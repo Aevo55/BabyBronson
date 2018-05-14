@@ -69,8 +69,14 @@ namespace POMTest.PageObjects
             GetComposeButton().Click();
             return new ComposeWindow(driver, action, wait);
         }
+        public void RefreshInbox() {
+            wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("div[class='asf T-I-J3 J-J5-Ji']"))).Click();
+        }
         public void DeleteSelected() {
             getDeleteButton().Click();
+        }
+        public void WaitForLoad() {
+            wait.Until(Waitcon.ExpectedConditions.ElementIsVisible(By.XPath("//tr[contains(@class,'zA')]")));
         }
         public EmailPage clickEmail(int count) {
             getEmail(count).Click();

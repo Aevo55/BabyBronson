@@ -23,12 +23,13 @@ namespace POMRun
             ChromeOptions options = new ChromeOptions();
 
             //options.AddArgument("--start-maximized");
-            //*
+            /*
             
 
             options.AddArgument("--headless");
             options.AddArgument("window-size=1920,1080");
-            options.AddArgument("--disable-gpu");//*/
+            options.AddArgument("--disable-gpu");
+            //*/
 
             const String loginaddress = "DaveTestSe";
             const String loginpassword = "TestPass";
@@ -37,7 +38,9 @@ namespace POMRun
             string connectionString = lookup.GetConnectionString();
             Console.WriteLine("Enter a destination address");
             String destinationaddress = Console.ReadLine();
-            IWebDriver driver = new ChromeDriver(options);
+            IWebDriver driver = new ChromeDriver(
+                        AppDomain.CurrentDomain.BaseDirectory, options);
+            //"C:\\Users\\Sean\\Source\\Repos\\BabyBronson\\BabyBronson\\POMRun\\Resources"
             Actions action = new Actions(driver);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
             Email email = new Email();
@@ -62,10 +65,9 @@ namespace POMRun
                     }
                 }
                 Console.WriteLine("refreshing");
-                driver.Navigate().Refresh();
+                gmailhome.RefreshInbox();
                 Thread.Sleep(TimeSpan.FromSeconds(15));    
             }
-            driver.Close();
         }
     }
 }

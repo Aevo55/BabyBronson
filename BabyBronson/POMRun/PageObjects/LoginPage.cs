@@ -41,11 +41,11 @@ namespace POMTest.PageObjects
         }
         public IWebElement getPasswordField() {
             //wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("input[name='password']")));
-            Console.WriteLine(driver.FindElement(By.CssSelector("input[type='password']")).GetAttribute("outerHTML"));
-            return driver.FindElement(By.CssSelector("input[type='password']"));
+            //Console.WriteLine(driver.FindElement(By.CssSelector("input[type='password']")).GetAttribute("outerHTML"));
+            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("input[type='password']")));
         }
         public IWebElement getPasswordNextButton() {
-            return driver.FindElement(By.Id("passwordNext"));
+            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.Id("passwordNext")));
         }
         public void EnterUsername(String username) {
             getUsernameField().SendKeys(username);
