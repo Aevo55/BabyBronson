@@ -61,8 +61,11 @@ namespace POMRun
                         email.forwardMail(destinationaddress, loginpassword, user, currentemail);
                         gmailhome = currentemail.returnToInbox();
                     } else {
+                        Console.WriteLine("Clicking older");
                         gmailhome.clickOlder();
+                       
                     }
+                    Thread.Sleep(500);
                 }
                 Console.WriteLine("refreshing");
                 gmailhome.RefreshInbox();
