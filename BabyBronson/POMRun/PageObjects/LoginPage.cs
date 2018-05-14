@@ -32,16 +32,13 @@ namespace POMTest.PageObjects
 
         }
         public IWebElement getUsernameField() {
-            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("input[type='email']")));
-            //return driver.FindElement(By.CssSelector("input[type='email']"));
-            
+            return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.CssSelector("input[type='email']"))); 
         }
         public IWebElement getUsernameNextButton() {
-            return driver.FindElement(By.CssSelector("span[class='RveJvd snByac']")); ;
+            return driver.FindElement(By.Id("identifierNext")); ;
         }
         public IWebElement getPasswordField() {
             return wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='password']//input")));
-
         }
         public IWebElement getPasswordNextButton() {
             
@@ -49,14 +46,12 @@ namespace POMTest.PageObjects
         }
         public void EnterUsername(String username) {
             getUsernameField().SendKeys(username);
-            action.SendKeys(Keys.Enter);
-            //getUsernameNextButton().Click();
+            //action.SendKeys(Keys.Enter);
+            getUsernameNextButton().Click();
         }
         public void EnterPassword(String password) {
-            
-            wait.Until(Waitcon.ExpectedConditions.ElementExists(By.XPath("//*[@id='password']//input")));
+            //wait.Until(Waitcon.ExpectedConditions.ElementExists(By.XPath("//*[@id='password']//input")));
             getPasswordField().SendKeys(password);
-            Thread.Sleep(500);
             wait.Until(Waitcon.ExpectedConditions.ElementToBeClickable(By.Id("passwordNext"))).Click();
 
         }
