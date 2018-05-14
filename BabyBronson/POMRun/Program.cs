@@ -51,7 +51,6 @@ namespace POMRun
             EmailPage currentemail;
 
             while (true) { 
-
                 while (gmailhome.getNumUnread() > 0) {
                     if (gmailhome.GetUnreadEmails().Count > 0) {
                         currentemail = gmailhome.clickUnreadEmail(1);
@@ -62,12 +61,11 @@ namespace POMRun
                         gmailhome.clickOlder();
                     }
                 }
+                Console.WriteLine("refreshing");
                 driver.Navigate().Refresh();
-                Thread.Sleep(TimeSpan.FromSeconds(15));
-                
-        }
+                Thread.Sleep(TimeSpan.FromSeconds(15));    
+            }
             driver.Close();
         }
-
     }
 }
