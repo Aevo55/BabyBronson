@@ -23,9 +23,12 @@ namespace POMRun
             ChromeOptions options = new ChromeOptions();
 
             //options.AddArgument("--start-maximized");
-            options.AddArgument("window-size=1920,1080");
-            //options.AddArgument("--headless");
-            //options.AddArgument("--disable-gpu");
+            //*
+            
+
+            options.AddArgument("--headless");
+            //options.AddArgument("window-size=1920,1080");
+            options.AddArgument("--disable-gpu");//*/
 
             const String loginaddress = "DaveTestSe";
             const String loginpassword = "TestPass";
